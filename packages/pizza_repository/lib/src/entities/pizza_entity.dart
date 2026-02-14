@@ -1,5 +1,6 @@
+import '../entities/macros_entity.dart';
+
 import '../models/models.dart';
-import '../entities/entities.dart';
 
 class PizzaEntity {
   String pizzaId;
@@ -8,8 +9,8 @@ class PizzaEntity {
   int spicy;
   String name;
   String description;
-  double price;
-  double discount;
+  int price;
+  int discount;
   Macros macros;
 
   PizzaEntity({
@@ -48,8 +49,7 @@ class PizzaEntity {
       description: doc['description'],
       price: doc['price'],
       discount: doc['discount'],
-      macros: Macros.fromEntity(MacrosEntity.fromDocument(doc['macros']),
-      ),
+      macros: Macros.fromEntity(MacrosEntity.fromDocument(doc['macros'])),
     );
   }
 }

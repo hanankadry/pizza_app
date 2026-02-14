@@ -1,4 +1,4 @@
-import '../entities/entities.dart';
+import '../entities/macros_entity.dart';
 
 class Macros {
   int calories;
@@ -27,7 +27,7 @@ class Macros {
       calories: entity.calories,
       proteins: entity.proteins,
       fat: entity.fat,
-      carbs: entity.carbs,
+      carbs: entity.carbs
     );
   }
 }

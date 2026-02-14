@@ -33,11 +33,12 @@ class MyAppView extends StatelessWidget {
                     context.read<AuthenticationBloc>().userRepository,
                   ),
                 ),
-                BlocProvider(create: (context) => GetPizzaBloc(
-                  FirebasePizzaRepo()
-                )..add(GetPizza())),
+                BlocProvider(
+                  create: (context) =>
+                      GetPizzaBloc(FirebasePizzaRepo())..add(GetPizza()),
+                ),
               ],
-              child: HomeScreen(),
+              child: const HomeScreen(),
             );
           } else {
             return const WelcomeScreen();
