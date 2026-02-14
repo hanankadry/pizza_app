@@ -88,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                     child: Text(
                                       (state.pizzas[i].isVeg)
-                                          ? 'VEG'
+                                          ? 'PURE-VEG'
                                           : 'NON-VEG',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -98,10 +98,14 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: 8),
+                                SizedBox(width: 4),
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: Colors.green.withOpacity(0.25),
+                                    color: (state.pizzas[i].spicy == 1)
+                                        ? Colors.green.withOpacity(0.25)
+                                        : (state.pizzas[i].spicy == 2)
+                                        ? Colors.orange.withOpacity(0.25)
+                                        : Colors.redAccent.withOpacity(0.25),
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   child: Padding(
@@ -111,10 +115,10 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                     child: Text(
                                       (state.pizzas[i].spicy == 1)
-                                          ? '🌶️ BLAND'
+                                          ? '🌶️BLAND'
                                           : (state.pizzas[i].spicy == 2)
-                                          ? '🌶️ BALANCE'
-                                          : '🌶️ SPICY',
+                                          ? '🌶️BALANCE'
+                                          : '🌶️SPICY',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w800,
                                         fontSize: 10,
@@ -145,6 +149,8 @@ class HomeScreen extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               (state.pizzas[i].description),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontWeight: FontWeight.w300,
                                 fontSize: 10,
@@ -154,7 +160,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 12.0,
+                              horizontal: 10.0,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -162,7 +168,7 @@ class HomeScreen extends StatelessWidget {
                                 Row(
                                   children: [
                                     Text(
-                                      '\$${(state.pizzas[i].price) - ((state.pizzas[i].price) * ((state.pizzas[i].discount / 100)))}0',
+                                      '\$${(state.pizzas[i].price) - ((state.pizzas[i].price) * ((state.pizzas[i].discount / 100)))}',
                                       style: TextStyle(
                                         fontSize: 16,
                                         color: Theme.of(
@@ -183,9 +189,22 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                IconButton(
+                                TextButton(
                                   onPressed: () {},
-                                  icon: Icon(CupertinoIcons.add_circled_solid),
+                                  style: TextButton.styleFrom(
+                                    minimumSize: Size(30, 30),
+                                    padding: EdgeInsets.zero,
+                                    elevation: 2.0,
+                                    backgroundColor: Colors.black,
+                                    foregroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    '+',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
                                 ),
                               ],
                             ),

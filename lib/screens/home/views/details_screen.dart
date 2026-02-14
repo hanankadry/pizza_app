@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pizza_app/components/macro.dart';
+import 'package:pizza_app/components/pizza_options.dart';
 import 'package:pizza_repository/pizza_repository.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -14,7 +16,7 @@ class DetailsScreen extends StatelessWidget {
       appBar: AppBar(backgroundColor: Theme.of(context).colorScheme.background),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
+        child: ListView(
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
@@ -70,7 +72,7 @@ class DetailsScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  '\$${(pizza.price) - ((pizza.price) * ((pizza.discount / 100)))}0',
+                                  '\$${(pizza.price) - ((pizza.price) * ((pizza.discount / 100)))}',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
@@ -112,7 +114,7 @@ class DetailsScreen extends StatelessWidget {
                         MacroWidget(
                           title: "Fat",
                           value: pizza.macros.fat,
-                          icon: FontAwesomeIcons.oilWell,
+                          icon: FontAwesomeIcons.drumstickBite,
                         ),
                         const SizedBox(width: 10),
                         MacroWidget(
@@ -122,7 +124,19 @@ class DetailsScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 20),
+                    Column(
+                      children: [
+                        Divider(color: Colors.grey.shade200, height: 1),
+                        PizzaOptions('Make Yours'),
+                        Divider(color: Colors.grey.shade200, height: 1),
+                        PizzaOptions('Ingredients'),
+                        Divider(color: Colors.grey.shade200, height: 1),
+                        PizzaOptions('Add Extra'),
+                        Divider(color: Colors.grey.shade200, height: 1),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       height: 50,
@@ -150,6 +164,7 @@ class DetailsScreen extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 40),
           ],
         ),
       ),
